@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<tittle>My website</tittle>
+<link rel="stlesheet"href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Shrezuu – Digital Literacy & Skills for Our Community</title>
+<style>
+:root{--bg:#fffaf0;--card:#fff;--ink:#1a1a1a;--muted:#4a4a4a;--brand:#0f6b5c;--brand-ink:#fff;--accent:#c2410c;--line:#d6cdb8;--ok:#14663a;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121417;--card:#1c2026;--ink:#f5f5f5;--muted:#c8ccd2;--brand:#5fd1b8;--brand-ink:#08201a;--accent:#ffb866;--line:#3a414b;--ok:#6fdc9a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121417;--card:#1c2026;--ink:#f5f5f5;--muted:#c8ccd2;--brand:#5fd1b8;--brand-ink:#08201a;--accent:#ffb866;--line:#3a414b;--ok:#6fdc9a;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Verdana,Tahoma,"Segoe UI",sans-serif;font-size:var(--fs,19px);line-height:1.6}
+.wrap{max-width:880px;margin:0 auto;padding:16px}
+header{text-align:center;padding:12px 0 4px}
+h1{font-size:2em;margin:.1em 0;color:var(--brand);letter-spacing:1px}
+h2{font-size:1.3em;margin:.2em 0}
+p{margin:.4em 0}.muted{color:var(--muted)}
+.bar{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:12px 0}
+button,label.btn{font:inherit;font-weight:700;min-height:50px;padding:8px 16px;border-radius:14px;border:3px solid var(--brand);background:var(--card);color:var(--brand);cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+button.primary{background:var(--brand);color:var(--brand-ink)}
+button:focus-visible,textarea:focus-visible{outline:4px solid var(--accent);outline-offset:2px}
+button[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink)}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:14px 0}
+.tile{text-align:left;display:block;width:100%;padding:18px;border-color:var(--line);color:var(--ink)}
+.tile .ico{font-size:2em;display:block}
+.tile small{display:block;font-weight:400;color:var(--muted)}
+.card{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:16px;margin:14px 0}
+.about{border-left:8px solid var(--brand)}
+.step{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:2px dashed var(--line)}
+.step:first-of-type{border-top:0}
+.num{flex:0 0 auto;width:42px;height:42px;border-radius:50%;background:var(--brand);color:var(--brand-ink);display:grid;place-items:center;font-weight:700}
+.step.playing{background:color-mix(in srgb,var(--accent) 18%,transparent);border-radius:12px}
+.step button{min-height:44px;padding:4px 12px;margin-top:6px}
+.notes{border-left:8px solid var(--ok)}
+.notes li{margin:.35em 0}
+textarea,input[type=text]{width:100%;font:inherit;padding:10px;border-radius:12px;border:3px solid var(--line);background:var(--card);color:var(--ink)}
+textarea{min-height:110px}
+.hidden{display:none}
+#status{min-height:1.5em;font-weight:700;color:var(--ok)}
+.au{border:2px solid var(--line);border-radius:12px;padding:10px;margin:8px 0}
+.au b{display:block;word-break:break-all;margin-bottom:6px}
+audio{width:100%}
+canvas{width:100%;height:210px;background:repeating-linear-gradient(#fffdf5,#fffdf5 31px,#bcd4ea 32px);border:3px solid #e8dfb8;border-radius:12px;touch-action:none;cursor:crosshair;display:block}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-top:12px}
+.hw{background:#fffdf5;border:1px solid #e8dfb8;border-radius:6px;padding:8px;box-shadow:2px 3px 0 rgba(0,0,0,.12);color:#3a3326}
+.hw img{width:100%;display:block;border-radius:3px}
+.hw p{margin:4px 0;font-size:.8em}
+.hw button{min-height:36px;padding:2px 10px;font-size:.8em;border-color:#b45309;color:#b45309;background:#fffdf5}
+.stars{display:flex;gap:4px;margin:8px 0}.stars button{min-height:54px;min-width:54px;font-size:2em;line-height:1;border:0;background:none;color:var(--line);padding:0 4px}.stars button.on{color:#f5a623}
+#fthanks{font-weight:700;color:var(--ok);min-height:1.5em}
+#feedback input{margin-bottom:10px}
+footer{text-align:center;color:var(--muted);padding:20px 0 30px;font-size:.8em}
+@media print{.bar,.no-print,.step button{display:none!important}body{background:#fff;color:#000}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1 id="t-title">shrezuu</h1>
+<p class="muted" id="t-sub"></p>
+</header>
+<div class="bar no-print" role="group" aria-label="Settings">
+<button id="lang-en" aria-pressed="true">English</button>
+<button id="lang-hi" aria-pressed="false">हिन्दी</button>
+<button id="lang-mr" aria-pressed="false">मराठी</button>
+<button id="bigger">A+</button><button id="smaller">A−</button>
+<button id="theme"><span class="tx-theme"></span></button>
+</div>
+<main>
+<section id="home">
+<div class="card about"><h2 id="t-ab"></h2><p id="t-abp"></p></div>
+<h2 id="t-pick"></h2>
+<div class="grid" id="tiles"></div>
+</section>
+<section id="lesson" class="hidden" aria-live="polite">
+<button id="back" class="no-print">← <span class="tx-back"></span></button>
+<h2 id="l-title"></h2><p class="muted" id="l-intro"></p>
+<div class="bar no-print"><button class="primary" id="playAll">🔊 <span class="tx-all"></span></button><button id="stop">⏹ <span class="tx-stop"></span></button></div>
+<div id="status" role="status"></div>
+<div class="card" id="steps"></div>
+<div class="card notes"><h2>📝 <span class="tx-notes"></span></h2><ul id="notes"></ul>
+<div class="bar no-print"><button id="listenNotes">🔊 <span class="tx-ln"></span></button><button id="print">🖨 <span class="tx-print"></span></button></div></div>
+<div class="card no-print"><h2>🎧 <span class="tx-au"></span></h2><p class="muted tx-aup"></p>
+<label class="btn">➕ <span class="tx-aadd"></span><input type="file" id="audioIn" accept="audio/*" multiple hidden></label>
+<div id="audioList"></div></div>
+<div class="card no-print"><h2>✍️ <span class="tx-hw"></span></h2><p class="muted tx-hwp"></p>
+<canvas id="pad" aria-label="Writing pad"></canvas>
+<input type="text" id="cap" style="margin-top:10px">
+<div class="bar"><button class="primary" id="hsave">💾 <span class="tx-hs"></span></button><button id="hclear">🧽 <span class="tx-hc"></span></button>
+<label class="btn">📷 <span class="tx-hu"></span><input type="file" id="photoIn" accept="image/*" multiple hidden></label></div>
+<div class="gal" id="gal"></div></div>
+<div class="card no-print"><h2>🗒️ <span class="tx-my"></span></h2><textarea id="mine"></textarea><p class="muted" id="saved"></p></div>
+</section>
+</main>
+<section class="card no-print" id="feedback"><h2>⭐ <span class="tx-fb"></span></h2><p class="muted tx-fbp"></p>
+<div class="stars" id="stars" role="group" aria-label="Rating"></div>
+<input type="text" id="fname"><textarea id="fmsg"></textarea>
+<div class="bar"><button class="primary" id="fsend">📨 <span class="tx-fsend"></span></button></div><p id="fthanks" role="status"></p></section>
+<footer>shrezuu · community digital literacy &amp; skill development</footer>
+</div>
+<script>
+var L={
+en:{code:"en-IN",fb:"Rate & give feedback",fbp:"Tell us how shrezuu helped you. Your words help us improve.",fname:"Your name (optional)",fmsg:"Your feedback or suggestion",fsend:"Submit feedback",fthx:"Thank you! Your feedback is saved on this device.",frate:"Please choose a star rating first.",sub:"Digital skills for everyone in our community. Press 🔊 to hear any lesson.",ab:"About shrezuu",abp:"shrezuu helps neighbours, families and elders learn to use phones and the internet safely. Learn with voice, read handwritten notes, and teach someone else.",pick:"What would you like to learn?",
+dark:"Dark mode",light:"Light mode",back:"Back to all lessons",all:"Listen to full lesson",stop:"Stop",notes:"Notes to remember",ln:"Listen to notes",print:"Print notes",
+au:"Audio lessons",aup:"Add recordings (MP3, WAV, M4A) for this lesson and play them here.",aadd:"Add audio files",hw:"Handwritten notes",hwp:"Write with your finger or mouse, or upload a photo of your notebook page.",hs:"Save note",hc:"Clear",hu:"Upload photo",cap:"Caption (optional)",del:"Delete",my:"My own notes",
+saved:"Saved on this device.",full:"Not enough space to keep this on the device. It is shown for now only.",listen:"🔊 Listen",nov:"No voice for this language was found on this device. Try Chrome.",reading:"Reading… ",step:"Step",noau:"No audio added yet.",
+lessons:[
+{ico:"📞",t:"Video call on WhatsApp",d:"See your family’s face on the phone.",
+s:["Tap the green WhatsApp icon once.","Tap the person’s name. Their chat opens.","At the top right, tap the camera picture.","Wait. When they answer, you will see their face.","To finish, tap the big red button."],
+n:["Camera icon = video call. Phone icon = voice call.","Calls need Wi-Fi or mobile data.","Red button always ends the call."]},
+{ico:"💳",t:"Pay safely with UPI",d:"Pay shops and family from your phone.",
+s:["Open Google Pay, PhonePe or BHIM.","Tap Scan and point the camera at the shop’s QR code.","Check the shop’s name carefully.","Type the amount, then your secret UPI PIN.","Wait for the green tick. The payment is done."],
+n:["UPI PIN is needed only to SEND money, never to receive it.","Anyone asking your PIN to “give” you money is a cheat.","Check the name before you pay."]},
+{ico:"📱",t:"Phone basics",d:"Volume, brightness, Wi-Fi and big letters.",
+s:["Side buttons change the sound: up is louder.","Swipe down from the top to see quick settings.","Tap the sun picture to change brightness.","Tap the Wi-Fi picture to turn it on or off.","Settings → Display → Font size makes letters bigger."],
+n:["Swipe down from the top for quick settings.","Wi-Fi is free internet. Mobile data uses your plan.","Charge your phone every night."]},
+{ico:"🛡️",t:"Avoid online fraud",d:"Spot cheats before they spot you.",
+s:["A bank never asks for your OTP, PIN or password.","Do not tap links in strange messages, even if they say “prize”.","If a caller rushes or scares you, cut the call.","Tell a family member before doing anything about money.","If cheated, call the cyber crime helpline 1930."],
+n:["Nobody gives free money. Prize messages are fake.","Hurry and fear are a cheat’s tools. Slow down.","Cyber fraud helpline in India: 1930."]}
+]},
+mr:{code:"mr-IN",fb:"रेटिंग द्या आणि अभिप्राय लिहा",fbp:"श्रेझूमुळे तुम्हाला कशी मदत झाली ते सांगा. तुमच्या बोलण्यामुळे आम्ही सुधारू.",fname:"तुमचे नाव (ऐच्छिक)",fmsg:"तुमचा अभिप्राय किंवा सुचवणी",fsend:"अभिप्राय जमा करा",fthx:"धन्यवाद! तुमचा अभिप्राय या फोनमध्ये सेव्ह झाला.",frate:"आधी स्टार रेटिंग निवडा.",sub:"आपल्या समाजातील प्रत्येकासाठी डिजिटल शिक्षण. कोणताही पाठ ऐकण्यासाठी 🔊 दाबा.",ab:"श्रेझू बद्दल",abp:"श्रेझू शेजारी, कुटुंबे आणि ज्येष्ठांना फोन आणि इंटरनेट सुरक्षितपणे वापरायला शिकवतो. आवाजातून शिका, हाताने लिहिलेल्या नोट्स वाचा आणि इतरांना शिकवा.",pick:"तुम्हाला काय शिकायचे आहे?",
+dark:"डार्क मोड",light:"लाइट मोड",back:"सर्व पाठांकडे परत",all:"पूर्ण पाठ ऐका",stop:"थांबवा",notes:"लक्षात ठेवण्यासारख्या गोष्टी",ln:"नोट्स ऐका",print:"नोट्स प्रिंट करा",
+au:"ऑडिओ पाठ",aup:"या पाठाची रेकॉर्डिंग (MP3, WAV, M4A) जोडा आणि इथेच ऐका.",aadd:"ऑडिओ फाइल जोडा",hw:"हाताने लिहिलेल्या नोट्स",hwp:"बोटाने किंवा माउसने लिहा, किंवा वहीच्या पानाचा फोटो टाका.",hs:"नोट सेव्ह करा",hc:"पुसून टाका",hu:"फोटो टाका",cap:"शीर्षक (ऐच्छिक)",del:"हटवा",my:"माझ्या स्वतःच्या नोट्स",
+saved:"या फोनमध्ये सेव्ह झाले.",full:"या फोनमध्ये जागा कमी आहे. सध्या फक्त दिसत आहे.",listen:"🔊 ऐका",nov:"या डिव्हाइसमध्ये मराठी आवाज सापडला नाही. Chrome मध्ये उघडा.",reading:"वाचत आहे… ",step:"पायरी",noau:"अजून ऑडिओ जोडलेला नाही.",
+lessons:[
+{ico:"📞",t:"व्हॉट्सॲपवर व्हिडिओ कॉल",d:"फोनवर आपल्या कुटुंबाचा चेहरा पाहा.",
+s:["हिरव्या व्हॉट्सॲप आयकॉनवर एकदा दाबा.","ज्यांच्याशी बोलायचे त्यांचे नाव दाबा. चॅट उघडेल.","वरच्या उजव्या बाजूला कॅमेरा दाबा.","थांबा. त्यांनी उचलताच चेहरा दिसेल.","संपवण्यासाठी मोठे लाल बटण दाबा."],
+n:["कॅमेरा चिन्ह = व्हिडिओ कॉल. फोन चिन्ह = आवाजी कॉल.","कॉलसाठी वाय-फाय किंवा डेटा लागतो.","लाल बटणाने कॉल संपतो."]},
+{ico:"💳",t:"यूपीआयने सुरक्षित पेमेंट",d:"फोनवरून दुकानदाराला आणि कुटुंबाला पैसे द्या.",
+s:["गुगल पे, फोनपे किंवा भीम उघडा.","स्कॅन दाबा आणि कॅमेरा दुकानाच्या क्यूआर कोडवर धरा.","दुकानाचे नाव काळजीपूर्वक तपासा.","रक्कम लिहा, मग तुमचा गुप्त यूपीआय पिन टाका.","हिरवी बरोबरची खूण आली की पेमेंट झाले."],
+n:["यूपीआय पिन फक्त पैसे पाठवण्यासाठी लागतो, मिळवण्यासाठी नाही.","पैसे देण्यासाठी पिन मागणारा फसवणारा असतो.","पैसे देण्यापूर्वी नाव तपासा."]},
+{ico:"📱",t:"फोनची मूलभूत माहिती",d:"आवाज, उजेड, वाय-फाय आणि मोठी अक्षरे.",
+s:["बाजूच्या बटणांनी आवाज बदला: वरचे बटण मोठा आवाज.","वरून खाली बोट ओढा, क्विक सेटिंग्ज दिसतील.","सूर्याच्या चिन्हावर दाबून उजेड बदला.","वाय-फायच्या चिन्हावर दाबून चालू किंवा बंद करा.","सेटिंग्ज → डिस्प्ले → फॉन्ट साइज मधून अक्षरे मोठी करा."],
+n:["क्विक सेटिंग्जसाठी वरून खाली ओढा.","वाय-फाय मोफत आहे. मोबाइल डेटा प्लॅनमधून कापला जातो.","फोन रोज रात्री चार्ज करा."]},
+{ico:"🛡️",t:"ऑनलाइन फसवणुकीपासून वाचा",d:"फसवणाऱ्यांना त्यांच्या आधी ओळखा.",
+s:["बँक कधीही OTP, पिन किंवा पासवर्ड मागत नाही.","विचित्र मेसेजमधील लिंक दाबू नका, “बक्षीस” लिहिले असले तरी.","कोणी घाई केली किंवा घाबरवले तर कॉल कट करा.","पैशांबाबत काही करण्यापूर्वी कुटुंबाला सांगा.","फसवणूक झाली तर लगेच सायबर हेल्पलाइन 1930 वर फोन करा."],
+n:["मोफत पैसे कोणी देत नाही. बक्षिसाचे मेसेज खोटे असतात.","घाई आणि भीती ही फसवणाऱ्यांची हत्यारे आहेत. शांत राहा.","सायबर फसवणूक हेल्पलाइन: 1930."]}
+]},
+hi:{code:"hi-IN",fb:"रेटिंग दें और राय लिखें",fbp:"बताइए श्रेज़ू से आपको कैसी मदद मिली। आपकी बात से हम बेहतर बनेंगे।",fname:"आपका नाम (ज़रूरी नहीं)",fmsg:"आपकी राय या सुझाव",fsend:"राय जमा करें",fthx:"धन्यवाद! आपकी राय इस फोन में सेव हो गई।",frate:"पहले स्टार रेटिंग चुनें।",sub:"हमारे समुदाय के हर व्यक्ति के लिए डिजिटल सीख। पाठ सुनने के लिए 🔊 दबाएँ।",ab:"श्रेज़ू के बारे में",abp:"श्रेज़ू पड़ोसियों, परिवारों और बुज़ुर्गों को फोन और इंटरनेट सुरक्षित चलाना सिखाता है। आवाज़ से सीखें, हाथ से लिखे नोट्स पढ़ें और दूसरों को सिखाएँ।",pick:"आप क्या सीखना चाहेंगे?",
+dark:"डार्क मोड",light:"लाइट मोड",back:"सभी पाठों पर वापस",all:"पूरा पाठ सुनें",stop:"रोकें",notes:"याद रखने की बातें",ln:"नोट्स सुनें",print:"नोट्स प्रिंट करें",
+au:"ऑडियो पाठ",aup:"इस पाठ की रिकॉर्डिंग (MP3, WAV, M4A) जोड़ें और यहीं सुनें।",aadd:"ऑडियो फ़ाइल जोड़ें",hw:"हाथ से लिखे नोट्स",hwp:"उँगली या माउस से लिखें, या अपनी कॉपी के पन्ने की फोटो डालें।",hs:"नोट सेव करें",hc:"मिटाएँ",hu:"फोटो डालें",cap:"शीर्षक (ज़रूरी नहीं)",del:"हटाएँ",my:"मेरे अपने नोट्स",
+saved:"इस फोन में सेव हो गया।",full:"इस फोन में जगह कम है। अभी सिर्फ़ दिख रहा है।",listen:"🔊 सुनें",nov:"इस डिवाइस में हिन्दी आवाज़ नहीं मिली। Chrome में खोलें।",reading:"पढ़ रहा है… ",step:"कदम",noau:"अभी कोई ऑडियो नहीं जुड़ा।",
+lessons:[
+{ico:"📞",t:"व्हाट्सऐप वीडियो कॉल",d:"फोन पर अपने परिवार का चेहरा देखें।",
+s:["हरे व्हाट्सऐप आइकन को एक बार दबाएँ।","जिनसे बात करनी है उनका नाम दबाएँ।","ऊपर दाईं ओर कैमरा दबाएँ।","इंतज़ार करें। उनके उठाते ही चेहरा दिखेगा।","खत्म करने के लिए बड़ा लाल बटन दबाएँ।"],
+n:["कैमरा निशान = वीडियो कॉल। फोन निशान = आवाज़ कॉल।","कॉल के लिए वाई-फाई या डेटा चाहिए।","लाल बटन से कॉल खत्म होती है।"]},
+{ico:"💳",t:"यूपीआई से सुरक्षित भुगतान",d:"फोन से दुकान और परिवार को पैसे भेजें।",
+s:["गूगल पे, फोनपे या भीम खोलें।","स्कैन दबाएँ और कैमरा दुकान के क्यूआर कोड पर रखें।","दुकान का नाम ध्यान से जाँचें।","रकम लिखें, फिर अपना गुप्त यूपीआई पिन डालें।","हरा सही का निशान आने पर भुगतान हो गया।"],
+n:["यूपीआई पिन सिर्फ़ पैसे भेजने के लिए चाहिए, पाने के लिए नहीं।","पैसे पाने के लिए पिन माँगने वाला ठग है।","भुगतान से पहले नाम देखें।"]},
+{ico:"📱",t:"फोन की बुनियादी बातें",d:"आवाज़, रोशनी, वाई-फाई और बड़े अक्षर।",
+s:["बगल के बटन से आवाज़ बदलें: ऊपर वाला तेज़।","ऊपर से नीचे उँगली घसीटें, त्वरित सेटिंग दिखेंगी।","सूरज का निशान दबाकर रोशनी बदलें।","वाई-फाई का निशान दबाकर चालू या बंद करें।","सेटिंग्स → डिस्प्ले → फॉन्ट साइज़ से अक्षर बड़े करें।"],
+n:["त्वरित सेटिंग के लिए ऊपर से नीचे घसीटें।","वाई-फाई मुफ्त है। मोबाइल डेटा प्लान से कटता है।","फोन रोज़ रात को चार्ज करें।"]},
+{ico:"🛡️",t:"ऑनलाइन धोखे से बचें",d:"ठगों को उनसे पहले पहचानें।",
+s:["बैंक कभी OTP, पिन या पासवर्ड नहीं माँगता।","अजीब संदेशों के लिंक न दबाएँ, चाहे “इनाम” लिखा हो।","कोई जल्दी मचाए या डराए तो कॉल काट दें।","पैसों से जुड़ा कुछ करने से पहले परिवार को बताएँ।","ठगी हो तो तुरंत साइबर हेल्पलाइन 1930 पर फोन करें।"],
+n:["मुफ्त पैसा कोई नहीं देता। इनाम के संदेश नकली हैं।","जल्दी और डर ठगों के हथियार हैं। धीरज रखें।","साइबर ठगी हेल्पलाइन: 1930।"]}
+]}};
+var lang="en",size=19,cur=-1,spk=false,queue=[],aud={},hw={};
+function $(i){return document.getElementById(i)}
+function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);return true}catch(e){return false}}
+var sv=parseInt(store("sz-size"));if(sv>=16&&sv<=34)size=sv;
+function applySize(){document.documentElement.style.setProperty("--fs",size+"px")}
+function txt(c,v){var e=document.getElementsByClassName(c);for(var i=0;i<e.length;i++)e[i].textContent=v}
+function dark(){var r=document.documentElement,a=r.getAttribute("data-theme");return a==="dark"||(!a&&matchMedia("(prefers-color-scheme: dark)").matches)}
+function labels(){var T=L[lang],m={sub:"t-sub",ab:"t-ab",abp:"t-abp",pick:"t-pick"};document.documentElement.lang=lang;
+for(var k in m)$(m[k]).textContent=T[k];
+var c={back:"tx-back",all:"tx-all",stop:"tx-stop",notes:"tx-notes",ln:"tx-ln",print:"tx-print",au:"tx-au",aup:"tx-aup",aadd:"tx-aadd",hw:"tx-hw",hwp:"tx-hwp",hs:"tx-hs",hc:"tx-hc",hu:"tx-hu",my:"tx-my",fb:"tx-fb",fbp:"tx-fbp",fsend:"tx-fsend"};
+for(var j in c)txt(c[j],T[j]);$("cap").placeholder=T.cap;$("fname").placeholder=T.fname;$("fmsg").placeholder=T.fmsg;txt("tx-theme",dark()?T.light:T.dark)}
+function renderTiles(){var h="";L[lang].lessons.forEach(function(x,i){h+='<button class="tile" data-i="'+i+'"><span class="ico">'+x.ico+'</span>'+x.t+'<small>'+x.d+'</small></button>'});$("tiles").innerHTML=h;
+var b=$("tiles").getElementsByTagName("button");for(var j=0;j<b.length;j++)b[j].onclick=function(){openLesson(+this.getAttribute("data-i"))}}
+function renderAudio(){var a=aud[cur]||[],h=$("audioList");h.innerHTML="";
+if(!a.length){h.innerHTML='<p class="muted">'+L[lang].noau+'</p>';return}
+a.forEach(function(f){var d=document.createElement("div");d.className="au";var b=document.createElement("b");b.textContent="🎵 "+f.name;var p=document.createElement("audio");p.controls=true;p.src=f.url;d.appendChild(b);d.appendChild(p);h.appendChild(d)})}
+function loadHW(i){if(hw[i])return;var s=store("sz-hw-"+i);try{hw[i]=s?JSON.parse(s):[]}catch(e){hw[i]=[]}}
+function saveHW(){if(store("sz-hw-"+cur,JSON.stringify(hw[cur]))===false)$("saved").textContent=L[lang].full}
+function renderHW(){var g=$("gal");g.innerHTML="";hw[cur].forEach(function(n,k){var d=document.createElement("div");d.className="hw";var im=document.createElement("img");im.src=n.src;im.alt=n.cap||"";d.appendChild(im);
+if(n.cap){var p=document.createElement("p");p.textContent=n.cap;d.appendChild(p)}
+var b=document.createElement("button");b.textContent=L[lang].del;b.onclick=function(){hw[cur].splice(k,1);saveHW();renderHW()};d.appendChild(b);g.appendChild(d)})}
+var c=$("pad"),x=c.getContext("2d"),draw=false,dpr=window.devicePixelRatio||1;
+function sizePad(){var r=c.getBoundingClientRect();if(!r.width)return;c.width=r.width*dpr;c.height=r.height*dpr;x.setTransform(dpr,0,0,dpr,0,0);x.lineWidth=2.6;x.lineCap="round";x.lineJoin="round";x.strokeStyle="#1d2b4f"}
+function pos(e){var r=c.getBoundingClientRect();return[e.clientX-r.left,e.clientY-r.top]}
+c.onpointerdown=function(e){draw=true;var p=pos(e);x.beginPath();x.moveTo(p[0],p[1]);c.setPointerCapture(e.pointerId)};
+c.onpointermove=function(e){if(!draw)return;var p=pos(e);x.lineTo(p[0],p[1]);x.stroke()};
+c.onpointerup=function(){draw=false};
+$("hclear").onclick=function(){x.clearRect(0,0,c.width,c.height)};
+$("hsave").onclick=function(){var o=document.createElement("canvas");o.width=c.width;o.height=c.height;var q=o.getContext("2d");q.fillStyle="#fffdf5";q.fillRect(0,0,o.width,o.height);q.drawImage(c,0,0);
+hw[cur].unshift({src:o.toDataURL("image/jpeg",.7),cap:$("cap").value});$("cap").value="";x.clearRect(0,0,c.width,c.height);saveHW();renderHW()};
+$("photoIn").onchange=function(e){var i=cur;Array.prototype.forEach.call(e.target.files,function(f){var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){var s=Math.min(1,800/Math.max(im.width,im.height)),o=document.createElement("canvas");o.width=im.width*s;o.height=im.height*s;o.getContext("2d").drawImage(im,0,0,o.width,o.height);
+hw[i].unshift({src:o.toDataURL("image/jpeg",.7),cap:f.name.replace(/\.[^.]+$/,"")});if(cur===i){saveHW();renderHW()}};im.src=r.result};r.readAsDataURL(f)});e.target.value=""};
+$("audioIn").onchange=function(e){var a=aud[cur]=aud[cur]||[];Array.prototype.forEach.call(e.target.files,function(f){a.push({name:f.name,url:URL.createObjectURL(f)})});e.target.value="";renderAudio()};
+function openLesson(i){stopSpeak();cur=i;var x2=L[lang].lessons[i],T=L[lang];
+$("home").classList.add("hidden");$("lesson").classList.remove("hidden");
+$("l-title").textContent=x2.ico+" "+x2.t;$("l-intro").textContent=x2.d;
+var h="";x2.s.forEach(function(s,k){h+='<div class="step" id="st'+k+'"><div class="num">'+(k+1)+'</div><div><div>'+s+'</div><button data-k="'+k+'">'+T.listen+'</button></div></div>'});
+$("steps").innerHTML=h;var b=$("steps").getElementsByTagName("button");for(var j=0;j<b.length;j++)b[j].onclick=function(){var k=+this.getAttribute("data-k");speakList([{t:x2.s[k],k:k}])};
+var n="";x2.n.forEach(function(s){n+="<li>"+s+"</li>"});$("notes").innerHTML=n;
+$("mine").value=store("sz-note-"+i)||"";$("saved").textContent="";
+loadHW(i);renderAudio();renderHW();window.scrollTo(0,0);sizePad()}
+function closeLesson(){stopSpeak();cur=-1;$("lesson").classList.add("hidden");$("home").classList.remove("hidden");window.scrollTo(0,0)}
+function pickVoice(code){var v=speechSynthesis.getVoices(),p=code.split("-")[0];return v.filter(function(y){return y.lang.replace("_","-")===code})[0]||v.filter(function(y){return y.lang.toLowerCase().indexOf(p)===0})[0]||null}
+function mark(k){var e=document.getElementsByClassName("step");for(var i=0;i<e.length;i++)e[i].classList.remove("playing");if(k!=null&&$("st"+k))$("st"+k).classList.add("playing")}
+function stopSpeak(){spk=false;queue=[];try{speechSynthesis.cancel()}catch(e){}mark(null);$("status").textContent=""}
+function speakList(items){stopSpeak();if(!("speechSynthesis" in window)){$("status").textContent="Audio is not supported in this browser.";return}queue=items.slice();spk=true;next()}
+function next(){if(!spk||!queue.length){stopSpeak();return}
+var it=queue.shift(),u=new SpeechSynthesisUtterance(it.t),T=L[lang],v=pickVoice(T.code);
+u.lang=T.code;if(v)u.voice=v;else if(lang!=="en")$("status").textContent=T.nov;
+u.rate=.85;mark(it.k);if(it.k!=null)$("status").textContent=T.reading+T.step+" "+(it.k+1);
+u.onend=function(){setTimeout(next,500)};u.onerror=function(){};speechSynthesis.speak(u)}
+$("playAll").onclick=function(){var y=L[lang].lessons[cur],a=[{t:y.t+". "+y.d,k:null}];y.s.forEach(function(s,k){a.push({t:L[lang].step+" "+(k+1)+". "+s,k:k})});speakList(a)};
+$("listenNotes").onclick=function(){speakList(L[lang].lessons[cur].n.map(function(s){return{t:s,k:null}}))};
+$("stop").onclick=stopSpeak;$("back").onclick=closeLesson;
+$("print").onclick=function(){try{window.print()}catch(e){}};
+$("bigger").onclick=function(){size=Math.min(34,size+2);store("sz-size",size);applySize()};
+$("smaller").onclick=function(){size=Math.max(16,size-2);store("sz-size",size);applySize()};
+$("theme").onclick=function(){document.documentElement.setAttribute("data-theme",dark()?"light":"dark");labels()};
+function setLang(l){lang=l;$("lang-en").setAttribute("aria-pressed",l==="en");$("lang-hi").setAttribute("aria-pressed",l==="hi");$("lang-mr").setAttribute("aria-pressed",l==="mr");stopSpeak();labels();renderTiles();if(cur>=0)openLesson(cur)}
+$("lang-en").onclick=function(){setLang("en")};$("lang-hi").onclick=function(){setLang("hi")};$("lang-mr").onclick=function(){setLang("mr")};
+var tm;$("mine").oninput=function(){clearTimeout(tm);tm=setTimeout(function(){store("sz-note-"+cur,$("mine").value);$("saved").textContent=L[lang].saved},400)};
+window.addEventListener("resize",function(){if(cur>=0&&!draw)sizePad()});
+var rating=0;
+function renderStars(){var s=$("stars");s.innerHTML="";for(var i=1;i<=5;i++){(function(n){var b=document.createElement("button");b.type="button";b.textContent="★";b.setAttribute("aria-label",n+" / 5");b.className=n<=rating?"on":"";b.onclick=function(){rating=n;$("fthanks").textContent="";renderStars()};s.appendChild(b)})(i)}}
+$("fsend").onclick=function(){var T=L[lang],t=$("fthanks");if(!rating){t.textContent=T.frate;return}
+var a=[];try{a=JSON.parse(store("sz-fb")||"[]")}catch(e){a=[]}
+a.push({rating:rating,name:$("fname").value,message:$("fmsg").value,date:new Date().toISOString()});store("sz-fb",JSON.stringify(a));
+t.textContent=T.fthx;rating=0;$("fname").value="";$("fmsg").value="";renderStars()};
+renderStars();
+applySize();labels();renderTiles();
+</script>
+<link rel="stylesheet"href="style.css">
+<script src="script.js"></script>
+</body>
+</html>
